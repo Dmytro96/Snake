@@ -1,3 +1,20 @@
+$bgcolor: rgb(17, 31, 99);
+
 body {
-  background-color: lightgrey;
+  background-color: $bgcolor;
+}
+.red {
+  background-color: red;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  a {
+    color: rgb(150, 166, 209)
+  }
+  &:hover {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: yellow
+  }
 }
