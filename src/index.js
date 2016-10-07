@@ -1,14 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {Router, Route, browserHistory} from 'react-router';
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
 
-import {Hello} from './app/hello';
+const store = configureStore()
 
-import './index.scss';
-
-ReactDOM.render(
-  <Router history={browserHistory}>
-    <Route path="/" component={Hello}/>
-  </Router>,
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
-);
+)
