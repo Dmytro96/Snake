@@ -1,10 +1,11 @@
   import React, { PropTypes, Component } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import Score from '../components/Score/index.js'
-import Area from '../components/Area/index.js'
-import Snake from '../components/Snake/index.js'
+import Score from '../components/score/score.js'
+import Area from '../components/area/area.js'
+import Snake from '../components/snake/snake.js'
 import * as scoreActions from '../actions/scoreActions.js'
+import * as snakeActions from '../actions/snakeActions.js'
 
 export class App extends Component {
   constructor(props) {
@@ -12,13 +13,14 @@ export class App extends Component {
   }
 
   render() {
-    const { score } = this.props
+    const { score, snake, x } = this.props
     const { setScore } = this.props.scoreActions
+    const { addSnake } = this.props.snakeActions
     return (
       <div>
         <Score count={score.count} setScore={setScore}/>
         <Area>
-          <Snake/>
+          <Snake width={snake.width} height={snake.height} x={snake.x} addSnake={addSnake}/>
         </Area>
       </div>
     )
@@ -27,13 +29,15 @@ export class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    score: state.score
+    score: state.score,
+    snake: state.snake
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    scoreActions: bindActionCreators(scoreActions, dispatch)
+    scoreActions: bindActionCreators(scoreActions, dispatch),
+    snakeActions: bindActionCreators(snakeActions, dispatch)
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App)

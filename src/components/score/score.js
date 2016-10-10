@@ -1,5 +1,5 @@
-import React, {PropTypes} from 'react';
-import './index.scss'
+import React, {PropTypes} from 'react'
+import './score.scss'
 
 let a = 0
 

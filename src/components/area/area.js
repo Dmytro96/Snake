@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
-import './index.scss'
-import Snake from '../Snake/index.js'
+import './area.scss'
+import Snake from '../snake/snake.js'
 
 export default class Area extends React.Component {
   constructor(props) {
@@ -12,9 +12,10 @@ export default class Area extends React.Component {
     return (
       <div className='area'>
         <svg width='600' height='600'>
-          <rect width='500' height='500' >
-            {this.props.children}
-          </rect>
+        <g>
+          <rect width='500' height='500'></rect>
+          {this.props.children}
+        </g>
         </svg>
       </div>
     );
