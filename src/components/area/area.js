@@ -11,7 +11,7 @@ export default class Area extends React.Component {
   render() {
     return (
       <div className='area'>
-        <svg width='600' height='600'>
+        <svg width='500' height='500'>
         <g>
           <rect width='500' height='500'></rect>
           {this.props.children}

@@ -1,6 +1,8 @@
-export function addSnake(xPos) {
+import { DIRECTION } from '../constants/constants.js'
+
+export function changeSnakeDirection(button) {
+
   return {
-    type: 'ADD_SNAKE',
-    payload: xPos
+    type: DIRECTION[button]
   }
 }

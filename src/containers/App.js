@@ -1,4 +1,4 @@
-  import React, { PropTypes, Component } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Score from '../components/score/score.js'
@@ -13,14 +13,17 @@ export class App extends Component {
   }
 
   render() {
-    const { score, snake, x } = this.props
+    const { score, snake, x, y, direction } = this.props
     const { setScore } = this.props.scoreActions
-    const { addSnake } = this.props.snakeActions
+    const { changeSnakeDirection } = this.props.snakeActions
     return (
       <div>
         <Score count={score.count} setScore={setScore}/>
         <Area>
-          <Snake width={snake.width} height={snake.height} x={snake.x} addSnake={addSnake}/>
+          <Snake width={snake.width} height={snake.height}
+                 x={snake.x} y={snake.y}
+                 direction={snake.direction}
+                 changeSnakeDirection={changeSnakeDirection} />
         </Area>
       </div>
     )
