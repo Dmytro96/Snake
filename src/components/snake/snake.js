@@ -20,12 +20,19 @@ export default class Snake extends React.Component {
 
     document.addEventListener('keydown', event => {
       clearInterval(name)
-      switch (event.keyCode) {
-        case 37:
-        case 38:
-        case 39:
+      let keyDetected = event.keyCode
+      switch (event.keyDetected) {
         case 40:
-          move(event.keyCode)
+          if (oldKeyCode == 38) keyDetected = 38
+        case 39:
+          if (oldKeyCode == 37) keyDetected = 37
+        case 38:
+          if (oldKeyCode == 40) keyDetected = 40
+        case 37:
+          if (oldKeyCode == 39) keyDetected = 39
+
+          console.log(`${keyDetected}  ${oldKeyCode}`)
+          move(keyDetected)
           break
         default:
           move(oldKeyCode)
