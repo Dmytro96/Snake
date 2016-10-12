@@ -9,23 +9,26 @@ export default class Snake extends React.Component {
   componentDidMount() {
     let name
     let oldKeyCode
+
+    let move = (keyCode) => {
+      oldKeyCode = keyCode
+      this.props.changeSnakeDirection(keyCode)
+      name = setInterval( () => {
+        this.props.changeSnakeDirection(keyCode)
+      }, 300)
+    }
+
     document.addEventListener('keydown', event => {
       clearInterval(name)
-      if ( event.keyCode == 40 ||
-           event.keyCode == 39 ||
-           event.keyCode == 38 ||
-           event.keyCode == 37
-         ) {
-             oldKeyCode = event.keyCode
-             this.props.changeSnakeDirection(event.keyCode)
-             name = setInterval( () => {
-               this.props.changeSnakeDirection(event.keyCode)
-             }, 300)
-      } else {
-          this.props.changeSnakeDirection(oldKeyCode)
-          name = setInterval( () => {
-            this.props.changeSnakeDirection(oldKeyCode)
-          }, 300)
+      switch (event.keyCode) {
+        case 37:
+        case 38:
+        case 39:
+        case 40:
+          move(event.keyCode)
+          break
+        default:
+          move(oldKeyCode)
       }
     })
   }
