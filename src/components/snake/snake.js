@@ -24,13 +24,11 @@ export default class Snake extends React.Component {
     document.addEventListener('keydown', event => {
 
       if (vectorX == true && (event.keyCode == 39 || event.keyCode == 37)) {
-        console.log(vectorX + '   vectorX - TRUE')
         move(event.keyCode)
       } else if (vectorX == false && (event.keyCode == 38 || event.keyCode == 40)) {
-        console.log(vectorX + '    vectorX - FALSE')
         move(event.keyCode)
       }
-      
+
     })
   }
 
