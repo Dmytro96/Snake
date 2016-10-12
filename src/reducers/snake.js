@@ -14,13 +14,29 @@ export default function snake (state = initialState, action) {
   // if ( state.y >= 500 || state.x <= 0 || state.y >= 500 || state.y <= 500) die()
   switch (action.type) {
     case DIRECTION[40]:
-      return { ...state, y: +state.y + 25, direction: action.type}
+      return {
+        ...state,
+         y: state.y + 25,
+         direction: action.type
+      }
     case DIRECTION[39]:
-      return { ...state, x: +state.x + 25, direction: action.type }
+      return {
+        ...state,
+        x: state.x + 25,
+        direction: action.type
+      }
     case DIRECTION[38]:
-      return { ...state, y: +state.y - 25, direction: action.type }
+      return {
+        ...state,
+        y: state.y - 25,
+        direction: action.type
+      }
     case DIRECTION[37]:
-      return { ...state, x: +state.x - 25, direction: action.type }
+      return {
+        ...state,
+        x: state.x - 25,
+        direction: action.type
+      }
     default:
       return state
   }
