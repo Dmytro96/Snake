@@ -4,16 +4,29 @@ import './snake.scss'
 export default class Snake extends React.Component {
   constructor(props) {
     super(props)
+    // document.addEventListener('click', function(){
+    //
+    // })
   }
 
+  // _onSnakeClick(event) {
+  //   setInterval(() => {
+  //     console.log(event)
+  //     this.props.changeSnakeDirection(1)
+  //   }, 500)
+  // }
 
-  onSnakeClick(event) {
-    setInterval(() => {
-      this.props.changeSnakeDirection(1)
-    }, 500)
+
+  componentDidMount() {
+    let self = this
+    let name;
+    document.onkeydown = function(event) {
+      clearInterval(name)
+      name = setInterval(function () {
+        self.props.changeSnakeDirection(event.keyCode)
+      }, 500);
+    }
   }
-
-
   render() {
     const { width, height, x, y, direction } = this.props
     return (
@@ -21,7 +34,7 @@ export default class Snake extends React.Component {
             width={width} height={height}
             x={x} y={y}
             direction={direction}
-            onMouseDown={::this.onSnakeClick} >40
+      >
       </rect>
     )
   }
@@ -31,5 +44,5 @@ Snake.propTypes = {
   height: PropTypes.string.isRequired,
   x: PropTypes.number.isRequired,
   y: PropTypes.number.isRequired,
-  onSnakeClick: PropTypes.func
+  changeSnakeDirection: PropTypes.func
 }

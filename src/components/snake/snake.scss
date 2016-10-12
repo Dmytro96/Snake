@@ -1,3 +1,7 @@
 .snake {
-  fill: rgb(81, 104, 111)
+  fill: rgb(81, 104, 111);
+  -webkit-transition: width 0.5s, height 0.5s, background-color 0.5s, -webkit-transform 0.5s
+}
+.snake:hover{
+  fill: rgb(208, 203, 20)
 }
