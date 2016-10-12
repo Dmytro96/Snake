@@ -5,33 +5,31 @@ const initialState = {
   height: '25',
   x: 0,
   y: 0,
-  direction: 'RIGHT'
+  direction: 'RIGHT_DIRECTION'
 }
-
-const step = 25
 
 export default function snake (state = initialState, action) {
   // if ( state.y >= 500 || state.x <= 0 || state.y >= 500 || state.y <= 500) die()
   switch (action.type) {
-    case DIRECTION[40]:
+    case 'DOWN_DIRECTION':
       return {
         ...state,
          y: state.y + 25,
          direction: action.type
       }
-    case DIRECTION[39]:
+    case 'RIGHT_DIRECTION':
       return {
         ...state,
         x: state.x + 25,
         direction: action.type
       }
-    case DIRECTION[38]:
+    case 'UP_DIRECTION':
       return {
         ...state,
         y: state.y - 25,
         direction: action.type
       }
-    case DIRECTION[37]:
+    case 'LEFT_DIRECTION':
       return {
         ...state,
         x: state.x - 25,

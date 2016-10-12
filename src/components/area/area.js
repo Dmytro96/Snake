@@ -12,10 +12,10 @@ export default class Area extends React.Component {
     return (
       <div className='area'>
         <svg width='500' height='500'>
-        <g>
-          <rect width='500' height='500'></rect>
-          {this.props.children}
-        </g>
+          <g>
+            <rect width='500' height='500'></rect>
+            {this.props.children}
+          </g>
         </svg>
       </div>
     );
