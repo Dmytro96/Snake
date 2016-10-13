@@ -1,7 +1,9 @@
-.snake {
-  fill: rgb(81, 104, 111);
-  // transition:  .3s ease-in;
-}
-.snake:hover{
-  fill: rgb(208, 203, 20)
+polyline > .snake {
+  fill: rgb(118, 127, 134);
+  stroke-width: 25px;
+  background-color: rgb(4, 190, 240);
+
+  .snake:hover {
+    fill: rgb(136, 42, 201);
+  }
 }

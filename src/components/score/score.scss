@@ -1,4 +1,9 @@
 .score {
+  margin: auto;
   color: rgb(23, 208, 151);
-  background-color: rgb(12, 6, 43)
+  background-color: rgb(12, 6, 43);
+
+  p {
+    font-size: 30px;
+  }
 }
