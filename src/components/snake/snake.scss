@@ -1,9 +1,4 @@
-polyline > .snake {
-  fill: rgb(118, 127, 134);
+.snake {
   stroke-width: 25px;
-  background-color: rgb(4, 190, 240);
-
-  .snake:hover {
-    fill: rgb(136, 42, 201);
-  }
+  stroke: blue;
 }

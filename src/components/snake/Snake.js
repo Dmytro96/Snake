@@ -4,9 +4,9 @@ import './snake.scss'
 export default class Snake extends Component {
 
   static defaultProps = {
-    x: 0,
+    x: 12.5,
     y: 0,
-    points: '0,0 50,25',
+    points: '0,12.5 50,12.5',
     direction: 'RIGHT_DIRECTION'
   }
 
