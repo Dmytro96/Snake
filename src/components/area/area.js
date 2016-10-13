@@ -3,10 +3,6 @@ import './area.scss'
 import Snake from '../snake/snake.js'
 
 export default class Area extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
 
   render() {
     return (
