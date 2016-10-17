@@ -4,7 +4,7 @@ import './snake.scss'
 export default class Snake extends Component {
 
   static defaultProps = {
-    points: [ 0,12.5, 25,12.5 ],
+    points: [ 0,12.5,  25,12.5,  37.5,12.5,  37.5,25,  37.5,37.5,  75,37.5 ],
     direction: 'RIGHT_DIRECTION'
   }
 
@@ -16,9 +16,10 @@ export default class Snake extends Component {
     const { points } = this.state
     let pointsStr = ''
 
-    for (var i = 0; i < points.length; i++) {
-      pointsStr += ( i % 2 === 0 ) ? points[i] : `,${points[i]} `
-    }
+
+    points.forEach((el, i) => {
+      pointsStr += ( i % 2 === 0 ) ? el : `,${el} `
+    })
 
     return (
       <polyline className='snake'
