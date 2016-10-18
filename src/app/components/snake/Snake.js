@@ -10,21 +10,23 @@ export default class Snake extends Component {
     points: generateRandomSnake()
   }
 
+  makeReadyArrayOfSnakeBlocks = (points, width, height) => {
+    let readyArrayOfSnakeBlocks = points.map((item, index) => {
+      return (
+        <rect key={index} className='snake'
+        width={width} height={height}
+        x={item.x} y={item.y} />
+      )
+    })
+    return readyArrayOfSnakeBlocks
+  }
 
   render() {
     const { width, height, points } = this.props
 
-    let readyArrayOfSnakeBlocks = points.map((item, index) => {
-      return (
-        <rect key={index} className='snake'
-        width='25' height='25'
-        x={item.x} y={item.y} />
-      )
-    })
-
     return (
         <g>
-          { readyArrayOfSnakeBlocks }
+          { this.makeReadyArrayOfSnakeBlocks(points, width, height) }
         </g>
     )
   }
