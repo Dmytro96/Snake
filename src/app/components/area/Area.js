@@ -16,7 +16,7 @@ export default class Area extends Component {
         <svg width={width} height={height}>
           <g>
             <rect width={width} height={height}></rect>
-            {this.props.children}
+            <Snake/>
           </g>
         </svg>
       </div>

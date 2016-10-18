@@ -10,6 +10,7 @@ export default class Snake extends Component {
     points: generateRandomSnake()
   }
 
+
   render() {
     const { width, height, points } = this.props
 
@@ -22,9 +23,9 @@ export default class Snake extends Component {
     })
 
     return (
-        <div>
+        <g>
           { readyArrayOfSnakeBlocks }
-        </div>
+        </g>
     )
   }
 }
