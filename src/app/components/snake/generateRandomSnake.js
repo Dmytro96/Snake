@@ -53,11 +53,11 @@ export const generateRandomSnake = () => {
   }
   const changeForRIGHT = () => {
     if (random < 0.33) {
-      stepLEFT()
-    } else if (random > 0.66) {
       stepUP()
-    } else {
+    } else if (random > 0.66) {
       stepRIGHT()
+    } else {
+      stepDOWN()
     }
   }
   const changeForDOWN = () => {
@@ -69,7 +69,6 @@ export const generateRandomSnake = () => {
       stepLEFT()
     }
   }
-
   const changeForLEFT = () => {
     if (random < 0.33) {
       stepDOWN()
@@ -129,10 +128,10 @@ export const generateRandomSnake = () => {
         case (random < 0.25):
           checkOverflowUP()
           break
-        case ((random >= 0.25) && (random < 0.5)):
+        case (random >= 0.25 && random < 0.5):
           checkOverflowRIGHT()
           break
-        case ((random >= 0.5) && (random < 0.75)):
+        case (random >= 0.5 && random < 0.75):
           checkOverflowDOWN()
           break
         default:
