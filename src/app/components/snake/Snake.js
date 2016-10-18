@@ -5,34 +5,31 @@ import './snake.scss'
 export default class Snake extends Component {
 
   static defaultProps = {
-    points: generateRandomSnake(),
-    // points: [ 50,62.5,  75,62.5,  100,62.5, 87.5,62.5,  87.5,100,  87.5,87.5,  125,87.5,  112.5,87.5,  112.5,125,  112.5,150,  112.5,137.5,  150,137.5,  137.5,137.5,  137.5,100,    137.5, 87.5,  175,87.5 ],
-    direction: 'RIGHT_DIRECTION'
-  }
-
-  state = {
-    points: this.props.points
+    width: 25,
+    height: 25,
+    points: generateRandomSnake()
   }
 
   render() {
+    const { width, height, points } = this.props
 
-    const { points } = this.state
-    let pointsStr = ''
-
-    points.forEach((el, i) => {
-      pointsStr += ( i % 2 === 0 ) ? el : `,${el} `
+    let readyArrayOfSnakeBlocks = points.map((item, index) => {
+      return (
+        <rect key={index} className='snake'
+        width='25' height='25'
+        x={item.x} y={item.y} />
+      )
     })
 
     return (
-      <polyline className='snake'
-                points={pointsStr}
-                >
-      </polyline>
+        <div>
+          { readyArrayOfSnakeBlocks }
+        </div>
     )
   }
 }
-
 Snake.propTypes = {
-  points: PropTypes.array.isRequired,
-  direction: PropTypes.string.isRequired
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  points: PropTypes.array.isRequired
 }
