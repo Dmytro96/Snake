@@ -5,9 +5,8 @@ import './snake.scss'
 export default class Snake extends Component {
 
   static defaultProps = {
-    // points: [ 0,12.5,  25,12.5,  37.5,12.5,  37.5,25,  37.5,37.5,  75,37.5 ],
     points: generateRandomSnake(),
-    // points: [ 50,62.5,  75,62.5,  100,62.5, 87.5,62.5,  87.5,100,  87.5,87.5,  125,87.5 ],
+    // points: [ 50,62.5,  75,62.5,  100,62.5, 87.5,62.5,  87.5,100,  87.5,87.5,  125,87.5,  112.5,87.5,  112.5,125,  112.5,150,  112.5,137.5,  150,137.5,  137.5,137.5,  137.5,100,    137.5, 87.5,  175,87.5 ],
     direction: 'RIGHT_DIRECTION'
   }
 
@@ -28,7 +27,6 @@ export default class Snake extends Component {
       <polyline className='snake'
                 points={pointsStr}
                 >
-
       </polyline>
     )
   }
