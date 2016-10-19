@@ -1,0 +1,17 @@
+export
+const
+  UP = 'UP',
+  LEFT = 'LEFT',
+  DOWN = 'DOWN',
+  RIGHT = 'RIGHT',
+  FORWARD = 'FORWARD',
+
+  MAX_SNAKE_LENGTH = 10,
+  MIN_SNAKE_LENGTH = 3,
+
+  STEP = 25,
+
+  AREA_SIZE = 500,
+
+  START_BREAK = 0,
+  END_BERAK = AREA_SIZE - STEP

@@ -1,32 +1,37 @@
 import React, { PropTypes, Component } from 'react'
-import { generateRandomSnake } from './generateRandomSnake.js'
+import generateRandomSnake from './generateRandomSnake.js'
+import { STEP } from '../../constants/snake.js'
 import './snake.scss'
 
 export default class Snake extends Component {
 
   static defaultProps = {
-    width: 25,
-    height: 25,
+    width: STEP,
+    height: STEP,
     points: generateRandomSnake()
   }
 
-  makeReadyArrayOfSnakeBlocks = (points, width, height) => {
-    let readyArrayOfSnakeBlocks = points.map((item, index) => {
-      return (
-        <rect key={index} className='snake'
-        width={width} height={height}
-        x={item.x} y={item.y} />
-      )
-    })
-    return readyArrayOfSnakeBlocks
+  renderSnakeBlocks = () => {
+    return (
+      this.props.points.map((item, index) => {
+        return (
+
+          <rect key={index}
+          className='snake'
+          width={this.props.width}
+          height={this.props.height}
+          x={item.x}
+          y={item.y} />
+          
+        )
+      })
+    )
   }
 
   render() {
-    const { width, height, points } = this.props
-
     return (
         <g>
-          { this.makeReadyArrayOfSnakeBlocks(points, width, height) }
+          { this.renderSnakeBlocks() }
         </g>
     )
   }

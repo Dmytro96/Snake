@@ -1,12 +1,13 @@
 import React, { PropTypes, Component } from 'react';
 import './area.scss'
 import Snake from '../snake/Snake.js'
+import { AREA_SIZE } from '../../constants/snake.js'
 
 export default class Area extends Component {
 
   static defaultProps = {
-    width: 500,
-    height: 500
+    width: AREA_SIZE,
+    height: AREA_SIZE
   }
 
   render() {
@@ -20,11 +21,11 @@ export default class Area extends Component {
           </g>
         </svg>
       </div>
-    );
+    )
   }
 }
 
 Area.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired
-};
+}
