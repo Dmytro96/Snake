@@ -49,31 +49,6 @@ const generateRandomSnake = () => {
       validationPass,
       nextPointG = pointsOfSnake[pointsOfSnake.length-1]
 
-
-  function previousStep() {
-    validationPass = false
-    nextPoint = currentPoint
-    direction.turn = turn
-  }
-
-  const validationOfSnakeGeneration = (nextPoint, direction, currentPoint) => {
-    if ( nextPoint.x < AREA_SIZE && nextPoint.x > 0 && nextPoint.y < AREA_SIZE && nextPoint.y > 0){
-      validationPass = true
-    } else {
-      console.log(currentPoint)
-      previousStep()
-    }
-
-    pointsOfSnake.forEach((item) => {
-      if (item.x === nextPoint.x && item.y === nextPoint.y) {
-        previousStep(currentPoint)
-      } else {
-        validationPass = true
-      }
-    })
-    return validationPass
-  }
-
   // WAY is TURN on the next step
   const stepInCourseOfWay = ( way = DIRECTIONS[Math.floor(Math.random() * 4)],
                               course = FORWARD,
@@ -83,7 +58,23 @@ const generateRandomSnake = () => {
       x: currentPoint.x + direction.x,
       y: currentPoint.y + direction.y
     }
-    let validationPass = validationOfSnakeGeneration(nextPoint, direction, currentPoint)
+    let validationPass = true
+    if ( nextPoint.x < AREA_SIZE && nextPoint.x > 0 && nextPoint.y < AREA_SIZE && nextPoint.y > 0){
+      validationPass = true
+    } else {
+      validationPass = false
+      direction.turn = turn
+      nextPoint = currentPoint
+    }
+    pointsOfSnake.forEach((item) => {
+      if (item.x === nextPoint.x && item.y === nextPoint.y) {
+        validationPass = false
+        nextPoint = currentPoint
+        direction.turn = turn
+      } else {
+        validationPass = true
+      }
+    })
     return [nextPoint, direction.turn, validationPass]
   }
 
