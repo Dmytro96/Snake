@@ -1,0 +1,6 @@
+export const DIRECTION = {
+  37: 'LEFT_DIRECTION',
+  38: 'UP_DIRECTION',
+  39: 'RIGHT_DIRECTION',
+  40: 'DOWN_DIRECTION'
+}

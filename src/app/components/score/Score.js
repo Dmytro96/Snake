@@ -7,8 +7,12 @@ export default class Score extends Component {
     score: 0
   }
 
+  state = {
+    score: this.props.score
+  }
+
   render() {
-    const score = this.props.score
+    const score = this.state.score
     return (
       <div className='score'>
         <p>{score}</p>
