@@ -20,18 +20,18 @@ export class App extends Component {
     )
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    score: state.score,
-    snake: state.snake
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    scoreActions: bindActionCreators(scoreActions, dispatch),
-    snakeActions: bindActionCreators(snakeActions, dispatch)
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+//
+// function mapStateToProps(state) {
+//   return {
+//     score: state.score,
+//     snake: state.snake
+//   }
+// }
+//
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     scoreActions: bindActionCreators(scoreActions, dispatch),
+//     snakeActions: bindActionCreators(snakeActions, dispatch)
+//   }
+// }
+// export default connect(mapStateToProps, mapDispatchToProps)(App)

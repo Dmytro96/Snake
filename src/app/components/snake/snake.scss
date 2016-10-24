@@ -1,7 +1,7 @@
 .snake {
   fill: rgb(42, 65, 65);
   stroke: rgb(29, 48, 48);
-  &:first-child {
+  &:last-child {
     fill: rgb(3, 164, 255);
     stroke: rgb(3, 164, 255);
   }

@@ -15,6 +15,12 @@ const stepInCourseOfWay = ( way = DIRECTIONS[Math.floor(Math.random() * 4)],
   let validationPass = validationOfSnakeGeneration(nextPoint, pointsOfSnake)
   let turn = validationPass ? direction.turn : way
 
+  console.log(direction)
+  console.log(nextPoint)
+  console.log(validationPass)
+  console.log(pointsOfSnake)
+  console.log('--------------------------------------------')
+
   return [nextPoint, turn, validationPass]
 }
 export default stepInCourseOfWay

@@ -17,6 +17,7 @@ const generateRandomSnake = () => {
     y: generateFirstPoint()
   }
   pointsOfSnake.push(firstPoints)
+  console.log(pointsOfSnake)
 
   let turn = undefined,
       validationPass,
@@ -34,6 +35,7 @@ const generateRandomSnake = () => {
     }
   }
 
+  console.log(pointsOfSnake)
   return pointsOfSnake.reverse()
 }
 export default generateRandomSnake

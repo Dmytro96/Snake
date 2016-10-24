@@ -35,5 +35,12 @@ const
       'LEFT_RIGHT': { x: 0, y: -25, turn: UP }
   }),
 
+  DIRECTION = {
+    37: LEFT,
+    38: UP,
+    39: RIGHT,
+    40: DOWN
+  },
+
   WAYS = [LEFT, FORWARD, RIGHT],
   DIRECTIONS = [UP, RIGHT, DOWN, LEFT]
