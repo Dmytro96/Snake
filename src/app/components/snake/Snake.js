@@ -1,17 +1,23 @@
 import React, { PropTypes, Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Map } from 'immutable'
 import generateRandomSnake from './generateRandomSnake.js'
 import { STEP, DIRECTIONS_MAP } from '../../constants/snake.js'
 import { changeSnakeDirection } from '../../actions/snakeActions.js'
 import './snake.scss'
 
 
-class Snake extends Component {
-  constructor(props) {
-    super(props)
+const mapStateToProps = ({ snake }) =>  ({
+        snake
+      })
+
+function mapDispatchToProps(dispatch) {
+  return {
+    changeSnakeDirectionFunc: bindActionCreators(changeSnakeDirection, dispatch)
   }
+}
+
+class Snake extends Component {
 
 
   static defaultProps = {
@@ -31,8 +37,8 @@ class Snake extends Component {
     return (
       this.props.snake.points.map((item, index) => {
         return (
-          <rect key = {index}
-          className = 'snake'
+          <rect className = 'snake'
+          key = {index}
           width = {this.props.width}
           height = {this.props.height}
           x = {item.x}
@@ -73,6 +79,7 @@ class Snake extends Component {
 
 
   render() {
+    const { snake } = this.props
     return (
         <g>
           { this.renderSnakeBlocks() }
@@ -86,15 +93,5 @@ Snake.propTypes = {
   changeSnakeDirection: PropTypes.func
   // points: PropTypes.array.isRequired
 }
-function mapStateToProps(state) {
-  return {
-    snake: state.snake
-  }
-}
 
-function mapDispatchToProps(dispatch) {
-  return {
-    changeSnakeDirectionFunc: bindActionCreators(changeSnakeDirection, dispatch)
-  }
-}
 export default connect(mapStateToProps, mapDispatchToProps)(Snake)

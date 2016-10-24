@@ -16,18 +16,19 @@ export default function snake (state = initialState, action) {
       validationPass
   switch (action.type) {
     case DOWN:
-    state.points.shift()
-    [nextPoint, turn, validationPass] = stepInCourseOfWay(
-                                            RIGHT,
-                                            RIGHT,
-                                            state.points
-                                          )
-                                          state.points.push(nextPoint)
-    if (validationPass) {
-    }
-      return {
-        ...state
+      state.points.shift()
+      [nextPoint, turn, validationPass] = stepInCourseOfWay(
+                                                            RIGHT,
+                                                            RIGHT,
+                                                            state.points
+                                                          )
+
+      state.points.push(nextPoint)
+      if (validationPass) {
       }
+        return {
+          ...state
+        }
     case RIGHT:
       state.points.shift()
       // let currentPoint = state.points[state.points.length-1]
