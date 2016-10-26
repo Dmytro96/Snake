@@ -1,26 +1,23 @@
-import { DIRECTIONS, WAYS, DIRECTIONS_MAP } from '../../constants/snake.js'
+import { DIRECTIONS, WAYS, DIRECTIONS_MAP, FORWARD } from '../../constants/snake.js'
 import validationOfSnakeGeneration from './validationOfSnakeGeneration.js'
-import { Map } from 'immutable'
-
-const stepInCourseOfWay = ( way = DIRECTIONS[Math.floor(Math.random() * 4)],
+import Immutable from 'immutable'
+import { randomOfList } from '../../utils/randomize.js'
+const randomFourSides = randomOfList(DIRECTIONS)
+const stepInCourseOfWay = ( way = randomFourSides,
                             course = FORWARD,
                             pointsOfSnake
                           ) => {
-  let currentPoint = pointsOfSnake[pointsOfSnake.length-1]
-  let direction = DIRECTIONS_MAP.get(`${way}_${course}`)
-  let nextPoint = {
-    x: currentPoint.x + direction.x,
-    y: currentPoint.y + direction.y
-  }
-  let validationPass = validationOfSnakeGeneration(nextPoint, pointsOfSnake)
-  let turn = validationPass ? direction.turn : way
+  const currentPoint = pointsOfSnake.get(pointsOfSnake.size - 1)
+  const direction = DIRECTIONS_MAP.get(`${way}_${course}`)
+  let nextPoint = Immutable.Map({
+    x: currentPoint.get('x') + direction.get('x'),
+    y: currentPoint.get('y') + direction.get('y')
+  })
+  nextPoint = nextPoint.set('validationPass', validationOfSnakeGeneration(nextPoint, pointsOfSnake))
 
-  console.log(direction)
-  console.log(nextPoint)
-  console.log(validationPass)
-  console.log(pointsOfSnake.length)
-  console.log('--------------------------------------------')
+  nextPoint = nextPoint.set('turn', nextPoint.get('validationPass') ? direction.get('turn') : way)
 
-  return [nextPoint, turn, validationPass]
+  return nextPoint
 }
+
 export default stepInCourseOfWay

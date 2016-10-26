@@ -7,15 +7,7 @@ import configureStore from './app/store/configureStore.js'
 
 import { UP } from './app/constants/snake.js'
 
-const store = configureStore({snake: {
-    points: [
-      {x: 50, y: 200},
-      {x: 75, y: 200},
-      {x: 75, y: 175},
-      {x: 75, y: 150}
-    ],
-    direction: UP
-}})
+const store = configureStore()
 
 render(
   <Provider store={store}>

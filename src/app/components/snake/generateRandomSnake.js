@@ -1,41 +1,37 @@
-import { UP, LEFT, DOWN, RIGHT, FORWARD, MAX_SNAKE_LENGTH, MIN_SNAKE_LENGTH, STEP, AREA_SIZE, DIRECTIONS_MAP, WAYS, DIRECTIONS } from '../../constants/snake.js'
+import {  STEP, AREA_SIZE, COLUMNS, WAYS, DIRECTIONS, SNAKE_LENGTH } from '../../constants/snake.js'
 import stepInCourseOfWay from './stepInCourseOfWay.js'
+import { randomOfList } from '../../utils/randomize.js'
+import Immutable from 'immutable'
 
 
 const generateRandomSnake = () => {
-  let random = Math.random()
-  let pointsOfSnake = []
+  let pointsOfSnake = Immutable.List()
 
-  const snakeLength =
-          Math.floor(Math.random() * (MAX_SNAKE_LENGTH - MIN_SNAKE_LENGTH) + MIN_SNAKE_LENGTH)
-  console.log(snakeLength + ' - length')
+  console.log(SNAKE_LENGTH + ' - length')
 
-  const generateFirstPoint = () => Math.floor(Math.random() * 20) * STEP
+  const generateFirstPoint = () => Math.floor(Math.random() * COLUMNS) * STEP
 
-  const firstPoints = {
+  const firstPoints = Immutable.Map({
     x: generateFirstPoint(),
     y: generateFirstPoint()
-  }
-  pointsOfSnake.push(firstPoints)
+  })
+  pointsOfSnake = pointsOfSnake.push(firstPoints)
   console.log(pointsOfSnake)
-
-  let turn = undefined,
-      validationPass,
-      nextPoint,
-      i = 1
-  while (i < snakeLength) {
-    [nextPoint, turn, validationPass] = stepInCourseOfWay(
-                                            turn,
-                                            WAYS[Math.floor(Math.random()*3)],
-                                            pointsOfSnake
-                                          )
-    if (validationPass) {
-      i++
-      pointsOfSnake.push(nextPoint)
+  let nextPoint = {
+    turn: undefined
+  }
+  while (pointsOfSnake.size <= SNAKE_LENGTH) {
+    const randomOfWays = randomOfList(WAYS)
+    nextPoint = Immutable.Map(stepInCourseOfWay(nextPoint.get('turn'), randomWay, pointsOfSnake))
+    if (nextPoint.get('validationPass')) {
+      pointsOfSnake = pointsOfSnake.push({
+        x: nextPoint.get('x'),
+        y: nextPoint.get('y')
+      })
     }
   }
 
   console.log(pointsOfSnake)
-  return pointsOfSnake.reverse()
+  return pointsOfSnake
 }
 export default generateRandomSnake
