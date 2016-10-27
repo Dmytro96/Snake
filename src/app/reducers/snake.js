@@ -12,29 +12,23 @@ const initialState = {
   //   {x: 75, y: 175},
   //   {x: 75, y: 150}
   // ],
-  points: generateRandomSnake(),
-  direction: UP
+  points: generateRandomSnake()
 }
-// export default handleActions({
-//   DOWN: (state, action) => ({
-//     state: state.update('points', points => points.push(nextPoint)),
-//     direction: DOWN
-//   })
-// })
 
 export default function snake(state = initialState, action) {
-  // const direction = DIRECTIONS_MAP.get()
-  // const pointsList = Immutable.List(state.points)
-  console.log(state)
 
+  console.log(state)
   const points = state.points
   switch (action.type) {
     case RIGHT:
-    points.shift()
-    points.push({
-      x: points[points.length-1].x + 25,
-      y: points[points.length-1].y
-    })
+      const nextStep = stepInCourseOfWay(action.type, FORWARD, state.points)
+      state = state.get('points').shift()
+      points.shift()
+      points.push({
+        x: points[points.length-1].x + 25,
+        y: points[points.length-1].y
+      })
+      state = state.update('points', points => points.push(nextPoint))
     // state.get('points').shift()
     // state = state.update('points', points => points.shift())
     // state = state.update('points', points => points.push(nextPoint))
@@ -47,91 +41,13 @@ export default function snake(state = initialState, action) {
 
     // state.points = points;
       return {
-        ...state,
-        direction: RIGHT
+        ...state
       }
-    case DOWN:
-      points.shift()
-      points.push({
-        x: points[points.length-1].x,
-        y: points[points.length-1].y + 25
-      })
+
       return {
-        ...state,
-        direction: DOWN
+        ...state
       }
-    case LEFT:
-      points.shift()
-      points.push({
-        x: points[points.length-1].x - 25,
-        y: points[points.length-1].y
-      })
-      return {
-        ...state,
-        direction: LEFT
-      }
-    case UP:
-      points.shift()
-      points.push({
-        x: points[points.length-1].x,
-        y: points[points.length-1].y - 25
-      })
-      return {
-        ...state,
-        direction: UP
-      }
-    // case DOWN:
-    //   state.points.shift()
-    //   nextPoint = stepInCourseOfWay( DOWN, FORWARD, state.points)
-    //   state.points.push(nextPoint)
-    //     return {
-    //       ...state
-    //     }
-    // case RIGHT:
-    //   state.points.shift()
-    //   // let currentPoint = state.points[state.points.length-1]
-    //   // const direction = DIRECTIONS_MAP.get('UP_RIGHT')
-    //   // let nextPoint = {
-    //   //   x: currentPoint.x + direction.x,
-    //   //   y: currentPoint.y + direction.y
-    //   // }
-    //
-    //   [nextPoint, turn, validationPass] = stepInCourseOfWay(
-    //                                           UP,
-    //                                           RIGHT,
-    //                                           state.points
-    //                                         )
-    //
-    //   state.points.push(nextPoint)
-    //   return {
-    //     ...state
-    //   }
-    // case UP:
-    //   state.points.shift()
-    //   [nextPoint, turn, validationPass] = stepInCourseOfWay(
-    //                                           LEFT,
-    //                                           RIGHT,
-    //                                           state.points
-    //                                         )
-    //   state.points.push(nextPoint)
-    //   if (!validationPass) {
-    //   }
-    //   return {
-    //     ...state
-    //   }
-    // case LEFT:
-    //   state.points.shift()
-    //   [nextPoint, turn, validationPass] = stepInCourseOfWay(
-    //                                           UP,
-    //                                           LEFT,
-    //                                           state.points
-    //                                         )
-    //                                         state.points.push(nextPoint)
-    //   if (validationPass) {
-    //   }
-    //   return {
-    //     ...state
-    //   }
+
     default:
       return state
   }

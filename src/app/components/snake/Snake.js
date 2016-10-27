@@ -1,18 +1,21 @@
 import React, { PropTypes, Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import Immutable from 'immutable'
 import generateRandomSnake from './generateRandomSnake.js'
-import { STEP, DIRECTIONS_MAP } from '../../constants/snake.js'
+import { STEP, DIRECTIONS_MAP, INVERSE_DIRECTION, DIRECTION } from '../../constants/snake.js'
 import { changeSnakeDirection } from '../../actions/snakeActions.js'
 import './snake.scss'
 
-const mapStateToProps = ({ snake }) =>  ({
-        snake
-      })
+const
+  mapStateToProps = ({ snake }) =>  ({
+    snake
+  })
 
-const mapDispatchToProps = dispatch => ({
-      changeSnakeDirection: bindActionCreators(changeSnakeDirection, dispatch)
-      })
+const
+  mapDispatchToProps = dispatch => ({
+    changeSnakeDirection: bindActionCreators(changeSnakeDirection, dispatch)
+  })
 
 
 class Snake extends Component {
@@ -24,13 +27,23 @@ class Snake extends Component {
 
   componentDidMount() {
     const { snake } = this.props
+    console.log(snake)
+    console.log('11111')
+
+    const oldDirection = snake.get('points').last().get('directionPoint')
 
     document.addEventListener('keydown', event => {
       clearInterval(this.interval)
 
-      this.interval = setInterval( () => {
+      if (DIRECTION.get(String(event.keyCode)) !== INVERSE_DIRECTION.get(String(oldDirection))) {
+
         this.props.changeSnakeDirection(event.keyCode)
-      }, 500);
+
+        this.interval = setInterval( () => {
+          this.props.changeSnakeDirection(event.keyCode)
+        }, 500);
+      }
+
 
     })
   }
@@ -38,7 +51,6 @@ class Snake extends Component {
 
   render() {
     const { width, height, snake } = this.props
-
     return (
         <g>
           {

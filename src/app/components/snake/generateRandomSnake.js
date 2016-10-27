@@ -1,6 +1,6 @@
 import {  STEP, AREA_SIZE, COLUMNS, WAYS, DIRECTIONS, SNAKE_LENGTH } from '../../constants/snake.js'
 import stepInCourseOfWay from './stepInCourseOfWay.js'
-import { randomOfList } from '../../utils/randomize.js'
+import { randomOfList, generateRandomPointOnMap } from '../../utils/randomize.js'
 import Immutable from 'immutable'
 
 
@@ -9,29 +9,25 @@ const generateRandomSnake = () => {
 
   console.log(SNAKE_LENGTH + ' - length')
 
-  const generateFirstPoint = () => Math.floor(Math.random() * COLUMNS) * STEP
-
   const firstPoints = Immutable.Map({
-    x: generateFirstPoint(),
-    y: generateFirstPoint()
+    x: generateRandomPointOnMap(),
+    y: generateRandomPointOnMap()
   })
   pointsOfSnake = pointsOfSnake.push(firstPoints)
-  console.log(pointsOfSnake)
-  let nextPoint = {
-    turn: undefined
-  }
+
+  let nextPoint = Immutable.Map({})
   while (pointsOfSnake.size <= SNAKE_LENGTH) {
     const randomOfWays = randomOfList(WAYS)
-    nextPoint = Immutable.Map(stepInCourseOfWay(nextPoint.get('turn'), randomWay, pointsOfSnake))
-    if (nextPoint.get('validationPass')) {
+    nextPoint = stepInCourseOfWay(nextPoint.get('turn'), randomOfWays, pointsOfSnake)
+    if (nextPoint.get('validationPass') === true) {
       pointsOfSnake = pointsOfSnake.push({
         x: nextPoint.get('x'),
-        y: nextPoint.get('y')
+        y: nextPoint.get('y'),
+        directionPoint: nextPoint.get('turn')
       })
     }
   }
 
-  console.log(pointsOfSnake)
   return pointsOfSnake
 }
 export default generateRandomSnake

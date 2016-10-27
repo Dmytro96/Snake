@@ -9,9 +9,9 @@ const validationOfSnakeGeneration = (nextPoint, pointsOfSnake) => {
 
   const validationSelf = (nextPoint, pointsOfSnake) =>
     !pointsOfSnake.find(item =>
-      (item.get('x') === nextPoint.get('x')
+      (item.x === nextPoint.get('x')
       &&
-      item.get('y') === nextPoint.get('y'))
+      item.y === nextPoint.get('y'))
     )
 
   return (validationBorder(nextPoint) && validationSelf(nextPoint, pointsOfSnake)) ? true : false

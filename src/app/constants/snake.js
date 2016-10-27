@@ -47,5 +47,12 @@ export
       40: DOWN
     }),
 
+    INVERSE_DIRECTION = Immutable.Map({
+      LEFT: RIGHT,
+      RIGHT: LEFT,
+      UP: DOWN,
+      DOWN: UP
+    }),
+
     WAYS = Immutable.List([LEFT, FORWARD, RIGHT]),
     DIRECTIONS = Immutable.List([UP, RIGHT, DOWN, LEFT])
