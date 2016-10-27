@@ -1,7 +1,7 @@
-import { DIRECTIONS, WAYS, DIRECTIONS_MAP, FORWARD } from '../../constants/snake.js'
-import validationOfSnakeGeneration from './validationOfSnakeGeneration.js'
+import { DIRECTIONS, WAYS, DIRECTIONS_MAP, FORWARD } from '../constants/snake.js'
 import Immutable from 'immutable'
-import { randomOfList } from '../../utils/randomize.js'
+import validationOfSnakeGeneration from './validationOfSnakeGeneration.js'
+import { randomOfList } from './randomize.js'
 
 const randomFourSides = randomOfList(DIRECTIONS)
 
@@ -9,7 +9,7 @@ const stepInCourseOfWay = ( way = randomFourSides,
                             course = FORWARD,
                             pointsOfSnake
                           ) => {
-
+  // console.log(pointsOfSnake)
   const currentPoint = Immutable.Map(pointsOfSnake.last())
   const direction = DIRECTIONS_MAP.get(`${way}_${course}`)
 
