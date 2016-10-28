@@ -17,12 +17,12 @@ const generateRandomSnake = () => {
   let nextPoint = Immutable.Map({})
   while (pointsOfSnake.size < SNAKE_LENGTH) {
     const randomOfWays = randomOfList(WAYS)
-    nextPoint = stepInCourseOfWay(nextPoint.get('turn'), randomOfWays, pointsOfSnake)
+    nextPoint = stepInCourseOfWay(pointsOfSnake, nextPoint.get('turn'), randomOfWays)
     if (nextPoint.get('validationPass') === true) {
       pointsOfSnake = pointsOfSnake.push(Immutable.Map({
         x: nextPoint.get('x'),
         y: nextPoint.get('y'),
-        directionPoint: nextPoint.get('turn')
+        turn: nextPoint.get('turn')
       }))
     }
   }

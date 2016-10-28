@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Immutable from 'immutable'
+
 import generateRandomSnake from '../../utils/generateRandomSnake.js'
 import { STEP, DIRECTIONS_MAP, INVERSE_DIRECTION, DIRECTION } from '../../constants/snake.js'
 import { changeSnakeDirection } from '../../actions/snakeActions.js'
@@ -26,29 +27,27 @@ class Snake extends Component {
   }
 
   componentDidMount() {
-    const { snake } = this.props
-
-    // const oldDirection = snake.get('points').last().get('directionPoint')
 
     document.addEventListener('keydown', event => {
-      clearInterval(this.interval)
-      //
-      // if (DIRECTION.get(String(event.keyCode)) !== INVERSE_DIRECTION.get(String(oldDirection))) {
+
+      const { snake } = this.props,
+            oldDirection = snake.get('points').last().get('turn')
+
+      if (DIRECTION.get(String(event.keyCode)) !== INVERSE_DIRECTION.get(String(oldDirection))) {
+
+        clearInterval(this.interval)
 
         this.props.changeSnakeDirection(event.keyCode)
-
         this.interval = setInterval( () => {
           this.props.changeSnakeDirection(event.keyCode)
-        }, 500);
-      // }
-
-
+        }, 500)
+      }
     })
   }
 
-
   render() {
     const { width, height, snake } = this.props
+
     return (
         <g>
           {

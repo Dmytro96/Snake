@@ -6,7 +6,6 @@ export
   const
     random = Math.random(),
 
-    // random course of [left, forward, right]
     randomOfList = (ways) => ways.get(Math.floor(Math.random()*(ways.size-1))),
 
     getRandomIntBetweenMinMax = (min, max) => Math.floor(Math.random() * (max - min) + min),

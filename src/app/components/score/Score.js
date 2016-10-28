@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import './score.scss'
+import Immutable from 'immutable'
 
 export default class Score extends Component {
 
