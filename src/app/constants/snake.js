@@ -40,7 +40,7 @@ export
         'LEFT_RIGHT': { x: 0, y: -25, turn: UP }
     }),
 
-    DIRECTION = Immutable.Map({
+    BUTTONS = Immutable.Map({
       37: LEFT,
       38: UP,
       39: RIGHT,

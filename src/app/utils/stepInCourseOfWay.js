@@ -10,8 +10,9 @@ const randomFourSides = randomOfList(DIRECTIONS),
                             course = FORWARD
                           ) => {
 
-  const currentPoint = Immutable.Map(pointsOfSnake.last()),
-        direction = DIRECTIONS_MAP.get(`${way}_${course}`)
+  const
+    currentPoint = Immutable.Map(pointsOfSnake.last()),
+    direction = DIRECTIONS_MAP.get(`${way}_${course}`)
 
   let nextPoint = Immutable.Map({
     x: currentPoint.get('x') + direction.get('x'),

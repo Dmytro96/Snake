@@ -19,11 +19,7 @@ const generateRandomSnake = () => {
     const randomOfWays = randomOfList(WAYS)
     nextPoint = stepInCourseOfWay(pointsOfSnake, nextPoint.get('turn'), randomOfWays)
     if (nextPoint.get('validationPass') === true) {
-      pointsOfSnake = pointsOfSnake.push(Immutable.Map({
-        x: nextPoint.get('x'),
-        y: nextPoint.get('y'),
-        turn: nextPoint.get('turn')
-      }))
+      pointsOfSnake = pointsOfSnake.push(nextPoint)
     }
   }
 

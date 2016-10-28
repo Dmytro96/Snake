@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import Immutable from 'immutable'
 
 import generateRandomSnake from '../../utils/generateRandomSnake.js'
-import { STEP, DIRECTIONS_MAP, INVERSE_DIRECTION, DIRECTION } from '../../constants/snake.js'
+import validationOfSnakeGeneration from '../../utils/validationOfSnakeGeneration.js'
+import { STEP, DIRECTIONS_MAP, INVERSE_DIRECTION, BUTTONS } from '../../constants/snake.js'
 import { changeSnakeDirection } from '../../actions/snakeActions.js'
 import './snake.scss'
 
@@ -26,23 +27,42 @@ class Snake extends Component {
     height: STEP
   }
 
-  componentDidMount() {
+  snakeMove(event) {
+    const
+      { snake } = this.props,
+      lastPoint = snake.get('points').last(),
 
-    document.addEventListener('keydown', event => {
+      oldDirection = lastPoint.get('turn'),
+      inverseValidation = BUTTONS.get(String(event.keyCode)) !==
+                          INVERSE_DIRECTION.get(String(oldDirection)),
+      keysValidation = BUTTONS.keySeq().includes(String(event.keyCode))
+      console.log(lastPoint.toJS())
 
-      const { snake } = this.props,
-            oldDirection = snake.get('points').last().get('turn')
+    if (inverseValidation && keysValidation) {
 
-      if (DIRECTION.get(String(event.keyCode)) !== INVERSE_DIRECTION.get(String(oldDirection))) {
+      clearInterval(this.interval)
 
-        clearInterval(this.interval)
-
-        this.props.changeSnakeDirection(event.keyCode)
-        this.interval = setInterval( () => {
+      // if (validationOfSnakeGeneration(lastPoint, snake.get('points'))) {
+        if (lastPoint.get('validationPass')) {
           this.props.changeSnakeDirection(event.keyCode)
-        }, 500)
-      }
-    })
+          this.interval = setInterval( () => {
+
+            this.props.changeSnakeDirection(event.keyCode)
+          }, 500)
+        }
+      // }
+
+
+    }
+  }
+
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.snakeMove.bind(this))
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.snakeMove.bind(this))
   }
 
   render() {

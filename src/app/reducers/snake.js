@@ -1,10 +1,10 @@
-import { DIRECTION, DIRECTIONS_MAP, LEFT, UP, DOWN, RIGHT, FORWARD } from '../constants/snake.js'
+import { LEFT, UP, DOWN, RIGHT, FORWARD } from '../constants/snake.js'
 import Immutable from 'immutable'
 
 import generateRandomSnake from '../utils/generateRandomSnake.js'
 import validationOfSnakeGeneration from '../utils/validationOfSnakeGeneration.js'
 import stepInCourseOfWay from '../utils/stepInCourseOfWay.js'
-import { moveSnake } from '../utils/moveSnake.js'
+import { moveSnakeStep } from '../utils/moveSnake.js'
 
 const initialState = Immutable.Map({
   // points: Immutable.List([
@@ -22,13 +22,13 @@ export default function snake(state = initialState, action) {
 
   switch (action.type) {
     case RIGHT:
-      return moveSnake(action.type, state)
+      return moveSnakeStep(action.type, state)
     case DOWN:
-      return moveSnake(action.type, state)
+      return moveSnakeStep(action.type, state)
     case LEFT:
-      return moveSnake(action.type, state)
+      return moveSnakeStep(action.type, state)
     case UP:
-      return moveSnake(action.type, state)
+      return moveSnakeStep(action.type, state)
     default:
       return state
   }
