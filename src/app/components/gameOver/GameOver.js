@@ -1,8 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import './gameOver.scss'
 
-import { AREA_SIZE } from '../../constants/snake.js'
-
 export class GameOver extends Component {
 
   render() {
@@ -20,4 +18,4 @@ export class GameOver extends Component {
 }
 
 GameOver.propTypes = {
-}
+};

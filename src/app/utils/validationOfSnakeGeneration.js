@@ -13,8 +13,8 @@ const validationOfSnakeGeneration = (nextPoint, pointsOfSnake) => {
         (item.get('x') === nextPoint.get('x')
         &&
         item.get('y') === nextPoint.get('y'))
-      )
+      );
 
   return (validationBorder(nextPoint) && validationSelf(nextPoint, pointsOfSnake)) ? true : false
-}
+};
 export default validationOfSnakeGeneration

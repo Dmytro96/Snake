@@ -1,4 +1,3 @@
-import Immutable from 'immutable'
 import { COLUMNS, STEP } from '../constants/snake.js'
 
 export
@@ -9,4 +8,4 @@ export
 
     getRandomIntBetweenMinMax = (min, max) => Math.floor(Math.random() * (max - min) + min),
 
-    generateRandomPointOnMap = () => Math.floor(Math.random() * (COLUMNS - 1)) * STEP
+    generateRandomPointOnMap = () => Math.floor(Math.random() * (COLUMNS - 1)) * STEP;

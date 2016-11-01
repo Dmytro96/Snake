@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import Immutable from 'immutable'
 
 import { STEP, INVERSE_DIRECTION, BUTTONS, DELAY } from '../../constants/snake.js'
 import { changeSnakeDirection, makeSnakeBigger } from '../../actions/snakeActions.js'
