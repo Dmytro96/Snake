@@ -12,36 +12,18 @@ import './eat.scss'
 
 class Eat extends Component {
 
+  componentDidMount() {
+    const
+      { snake } = this.props,
+      eatPosition = createPosition(snake);
+
+    this.props.generateEatPosition(eatPosition)
+  }
+
   static defaultProps = {
     width: STEP,
     height: STEP
   };
-
-  componentDidMount() {
-
-      // snakeHead = snake.get('points').last(),
-      // eatPosition = eat.get('eatPosition');
-
-    const { snake } = this.props;
-
-      let eatPosition = createPosition();
-
-      const validationSelf = (eatPos, pointsOfSnake) =>
-        pointsOfSnake.find(item =>
-          (item.get('x') === eatPos.get('x')
-          &&
-          item.get('y') === eatPos.get('y'))
-        );
-
-      while (validationSelf(eatPosition, snake.get('points'))){
-        eatPosition = createPosition();
-      }
-      this.props.generateEatPosition(eatPosition)
-
-
-
-
-  }
 
   render() {
     const { width, height, eat } = this.props;

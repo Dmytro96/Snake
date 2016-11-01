@@ -1,7 +1,4 @@
 import React, { PropTypes, Component } from 'react'
-import Immutable from 'immutable'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
 
 import Snake from '../snake/Snake.js'
 import Eat  from '../eat/Eat.js'
@@ -14,14 +11,16 @@ export default class Area extends Component {
   static defaultProps = {
     width: AREA_SIZE,
     height: AREA_SIZE
-  }
+  };
 
   render() {
-    const { width, height } = this.props
+    const { width, height } = this.props;
 
     return (
       <div className='area'>
-        <svg width={width} height={height}>
+        <svg
+          width={width}
+          height={height} >
           <g>
             <rect
               width={width}
@@ -39,4 +38,4 @@ export default class Area extends Component {
 Area.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired
-}
+};

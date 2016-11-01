@@ -1,22 +1,18 @@
 import React, { PropTypes, Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import Immutable from 'immutable'
 
 import { STEP, INVERSE_DIRECTION, BUTTONS, DELAY } from '../../constants/snake.js'
-import { changeSnakeDirection } from '../../actions/snakeActions.js'
+import { changeSnakeDirection, makeSnakeBigger } from '../../actions/snakeActions.js'
+import { generateEatPosition } from '../../actions/eatActions'
+import stepInCourseOfWay from '../../utils/stepInCourseOfWay'
+import createPosition from '../../utils/createPosition'
+
 import './snake.scss'
 
-const
-  mapStateToProps = ({ snake }) =>  ({
-    snake
-  }),
-  mapDispatchToProps = dispatch => ({
-    changeSnakeDirection: bindActionCreators(changeSnakeDirection, dispatch)
-  });
 
-
-class
-Snake extends Component {
+class Snake extends Component {
 
   static defaultProps = {
     width: STEP,
@@ -25,22 +21,42 @@ Snake extends Component {
 
   snakeMove(event) {
     const
-      { snake } = this.props,
-      lastPoint = snake.get('points').last(),
+      { snake, eat } = this.props,
+      eatPosition = eat.get('eatPosition'),
+      snakeBack = snake.get('points').first(),
+      snakeHead = snake.get('points').last(),
 
-      oldDirection = lastPoint.get('turn'),
+      oldDirection = snakeHead.get('turn'),
       inverseValidation = BUTTONS.get(String(event.keyCode)) !==
                           INVERSE_DIRECTION.get(String(oldDirection)),
-      keysValidation = BUTTONS.keySeq().includes(String(event.keyCode))
+      keysValidation = BUTTONS.keySeq().includes(String(event.keyCode));
+
 
     if (inverseValidation && keysValidation) {
 
-      clearInterval(this.interval)
+      clearInterval(this.interval);
 
-      if (lastPoint.get('validationPass')) {
-        this.props.changeSnakeDirection(event.keyCode)
+      if (snakeHead.get('validationPass')) {
+        this.props.changeSnakeDirection(event.keyCode);
+        if (snakeHead.get('x') === eatPosition.get('x')
+          &&
+          snakeHead.get('y') === eatPosition.get('y')) {
+          this.props.makeSnakeBigger(
+            stepInCourseOfWay(snake.get('points'), INVERSE_DIRECTION.get(String(snakeBack.get('turn'))))
+          );
+          this.props.generateEatPosition(createPosition(snake))
+        }
         this.interval = setInterval( () => {
-          this.props.changeSnakeDirection(event.keyCode)
+
+          if (snakeHead.get('x') === eatPosition.get('x')
+            &&
+            snakeHead.get('y') === eatPosition.get('y')) {
+            this.props.makeSnakeBigger(
+              stepInCourseOfWay(snake.get('points'), INVERSE_DIRECTION.get(String(snakeBack.get('turn'))))
+            );
+            this.props.generateEatPosition(createPosition(snake))
+          }
+          this.props.changeSnakeDirection(event.keyCode);
         }, DELAY)
       }
     }
@@ -56,7 +72,9 @@ Snake extends Component {
   }
 
   render() {
-    const { width, height, snake } = this.props
+    const
+      { width, height, snake } = this.props;
+
     return (
         <g>
           {
@@ -79,5 +97,17 @@ Snake.propTypes = {
   height: PropTypes.number.isRequired,
   changeSnakeDirection: PropTypes.func
 };
+
+const
+  mapStateToProps = ({ snake, eat }) =>  ({
+    snake,
+    eat
+  }),
+  mapDispatchToProps = dispatch => ({
+    changeSnakeDirection: bindActionCreators(changeSnakeDirection, dispatch),
+    makeSnakeBigger: bindActionCreators(makeSnakeBigger, dispatch),
+    generateEatPosition: bindActionCreators(generateEatPosition, dispatch)
+  });
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Snake)
