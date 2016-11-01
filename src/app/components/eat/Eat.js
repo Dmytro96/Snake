@@ -1,5 +1,5 @@
 import React, { PropTypes as pt, Component } from 'react'
-import Immutable from 'immutable'
+
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
@@ -11,9 +11,6 @@ import { STEP } from '../../constants/snake.js'
 import './eat.scss'
 
 class Eat extends Component {
-  // constructor() {
-  //
-  // }
 
   static defaultProps = {
     width: STEP,
@@ -25,22 +22,28 @@ class Eat extends Component {
       // snakeHead = snake.get('points').last(),
       // eatPosition = eat.get('eatPosition');
 
-    const { snake } = this.props;
+    const { snake, eat } = this.props;
 
 
-    let eatPosition = createPosition();
+    if  (eat.get('eatPosition').size === 0)  {
 
-    const validationSelf = (eatPos, pointsOfSnake) =>
-      pointsOfSnake.find(item =>
-        (item.get('x') === eatPos.get('x')
-        &&
-        item.get('y') === eatPos.get('y'))
-      );
+      let eatPosition = createPosition();
 
-    while (validationSelf( eatPosition, snake.get('points'))){
-      eatPosition = createPosition();
+      const validationSelf = (eatPos, pointsOfSnake) =>
+        pointsOfSnake.find(item =>
+          (item.get('x') === eatPos.get('x')
+          &&
+          item.get('y') === eatPos.get('y'))
+        );
+
+      while (validationSelf(eatPosition, snake.get('points'))){
+        eatPosition = createPosition();
+      }
+      generateEatPosition(eatPosition);
     }
-    generateEatPosition(eatPosition);
+
+
+
   }
 
   render() {
@@ -51,8 +54,8 @@ class Eat extends Component {
         <rect className='eat'
           width = {width}
           height = {height}
-          x = {eat.get('eatPosition').get('x')}
-          y = {eat.get('eatPosition').get('y')}
+          x = {eat.getIn(['eatPosition', 'x'])}
+          y = {eat.getIn(['eatPosition', 'y'])}
         />
       </g>
     )

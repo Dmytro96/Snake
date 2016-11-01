@@ -3,7 +3,7 @@ import { MAKE_SNAKE_BIGGER } from '../constants/eat.js'
 import Immutable from 'immutable'
 
 export
-  const changeSnakeDirection = (button) => {
+  const changeSnakeDirection = button => {
     return {
       type: BUTTONS.get(String(button))
     }

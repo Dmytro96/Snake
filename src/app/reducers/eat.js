@@ -4,17 +4,21 @@ import createPosition from '../utils/createPosition.js';
 
 
 
-// const initialState = Immutable.Map({
-//     eatPosition: Immutable.Map({x:100,y:100})
-// });
+const initialState = Immutable.Map({
+    eatPosition: Immutable.Map()
+});
 
-export default function eat(state , action) {
-
+export default function eat(state = initialState, action) {
+  console.log('in eat reducer');
+  console.log(action);
   switch (action.type) {
     case GENERATE_EAT_POSITION:
-        state = state.set('eatPosition', payload.eatPosition);
+      console.log(state.toJS());
+      state = state.set('eatPosition', payload.eatPosition);
+      console.log(state.toJS());
       return state;
     default:
+      console.log('default');
       return state;
   }
 }
