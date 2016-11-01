@@ -1,6 +1,7 @@
 import {  STEP, AREA_SIZE, COLUMNS, WAYS, DIRECTIONS, SNAKE_LENGTH } from '../constants/snake.js'
 import stepInCourseOfWay from './stepInCourseOfWay.js'
 import { randomOfList, generateRandomPointOnMap } from './randomize.js'
+import createPosition from './createPosition.js'
 import Immutable from 'immutable'
 
 
@@ -9,10 +10,7 @@ const generateRandomSnake = () => {
 
   console.log(SNAKE_LENGTH + ' - length')
 
-  pointsOfSnake = pointsOfSnake.push(Immutable.Map({
-    x: generateRandomPointOnMap(),
-    y: generateRandomPointOnMap()
-  }))
+  pointsOfSnake = pointsOfSnake.push(createPosition())
 
   let nextPoint = Immutable.Map({})
   while (pointsOfSnake.size < SNAKE_LENGTH) {

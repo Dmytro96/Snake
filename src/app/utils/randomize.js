@@ -1,7 +1,6 @@
 import Immutable from 'immutable'
 import { COLUMNS, STEP } from '../constants/snake.js'
 
-// default Random
 export
   const
     random = Math.random(),

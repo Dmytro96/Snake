@@ -1,7 +1,13 @@
-import React, { PropTypes, Component } from 'react';
-import './area.scss'
+import React, { PropTypes, Component } from 'react'
+import Immutable from 'immutable'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
 import Snake from '../snake/Snake.js'
+import Eat  from '../eat/Eat.js'
+
 import { AREA_SIZE } from '../../constants/snake.js'
+import './area.scss'
 
 export default class Area extends Component {
 
@@ -12,12 +18,17 @@ export default class Area extends Component {
 
   render() {
     const { width, height } = this.props
+
     return (
       <div className='area'>
         <svg width={width} height={height}>
           <g>
-            <rect width={width} height={height}></rect>
-            <Snake/>
+            <rect
+              width={width}
+              height={height}
+            />
+            <Snake />
+            <Eat />
           </g>
         </svg>
       </div>

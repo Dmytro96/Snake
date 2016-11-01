@@ -16,8 +16,7 @@ export
     COLUMNS = 20,
     STEP = AREA_SIZE / COLUMNS,
 
-    START_BREAK = 0,
-    END_BERAK = AREA_SIZE - STEP,
+    DELAY = 500,
 
     // snake length computing [3 - 10]
     SNAKE_LENGTH = getRandomIntBetweenMinMax(MIN_SNAKE_LENGTH, MAX_SNAKE_LENGTH),
@@ -55,4 +54,5 @@ export
     }),
 
     WAYS = Immutable.List([LEFT, FORWARD, RIGHT]),
-    DIRECTIONS = Immutable.List([UP, RIGHT, DOWN, LEFT])
+    DIRECTIONS = Immutable.List([UP, RIGHT, DOWN, LEFT]);
+

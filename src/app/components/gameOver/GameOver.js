@@ -3,13 +3,13 @@ import './gameOver.scss'
 
 import { AREA_SIZE } from '../../constants/snake.js'
 
-export default class GameOver extends Component {
+export class GameOver extends Component {
 
   render() {
 
     return (
       <g className='game-over'>
-        <text className='text'>
+        <text>
           Game Over
         </text>
 

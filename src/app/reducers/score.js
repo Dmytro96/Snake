@@ -8,7 +8,7 @@ const initialState = Immutable.Map({
 export default function score(state = initialState, action) {
   switch (action.type) {
     case SET_SCORE:
-      return { state }
+      return { state, count: ++count }
     default:
       return state
   }

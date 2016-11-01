@@ -3,29 +3,26 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Immutable from 'immutable'
 
-import generateRandomSnake from '../../utils/generateRandomSnake.js'
-import validationOfSnakeGeneration from '../../utils/validationOfSnakeGeneration.js'
-import { STEP, DIRECTIONS_MAP, INVERSE_DIRECTION, BUTTONS } from '../../constants/snake.js'
+import { STEP, INVERSE_DIRECTION, BUTTONS, DELAY } from '../../constants/snake.js'
 import { changeSnakeDirection } from '../../actions/snakeActions.js'
 import './snake.scss'
 
 const
   mapStateToProps = ({ snake }) =>  ({
     snake
-  })
-
-const
+  }),
   mapDispatchToProps = dispatch => ({
     changeSnakeDirection: bindActionCreators(changeSnakeDirection, dispatch)
-  })
+  });
 
 
-class Snake extends Component {
+class
+Snake extends Component {
 
   static defaultProps = {
     width: STEP,
     height: STEP
-  }
+  };
 
   snakeMove(event) {
     const
@@ -36,22 +33,17 @@ class Snake extends Component {
       inverseValidation = BUTTONS.get(String(event.keyCode)) !==
                           INVERSE_DIRECTION.get(String(oldDirection)),
       keysValidation = BUTTONS.keySeq().includes(String(event.keyCode))
-      console.log(lastPoint.toJS())
 
     if (inverseValidation && keysValidation) {
 
       clearInterval(this.interval)
 
-      // if (validationOfSnakeGeneration(lastPoint, snake.get('points'))) {
-        if (lastPoint.get('validationPass')) {
+      if (lastPoint.get('validationPass')) {
+        this.props.changeSnakeDirection(event.keyCode)
+        this.interval = setInterval( () => {
           this.props.changeSnakeDirection(event.keyCode)
-          this.interval = setInterval( () => {
-
-            this.props.changeSnakeDirection(event.keyCode)
-          }, 500)
-        }
-      // }
-
+        }, DELAY)
+      }
 
     }
   }
@@ -67,7 +59,6 @@ class Snake extends Component {
 
   render() {
     const { width, height, snake } = this.props
-
     return (
         <g>
           {
