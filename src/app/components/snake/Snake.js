@@ -22,7 +22,6 @@ class Snake extends Component {
       { snake, eat } = this.props,
       eatPosition = eat.get('eatPosition'),
       snakeHead = snake.get('points').last(),
-
       oldDirection = snakeHead.get('turn'),
 
       inverseValidation = BUTTONS.get(String(event.keyCode)) !==

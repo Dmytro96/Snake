@@ -5,10 +5,11 @@ import { connect } from 'react-redux'
 
 import { generateEatPosition } from '../../actions/eatActions'
 import { makeSnakeBigger } from '../../actions/snakeActions'
+import { setScore } from '../../actions/scoreActions'
 import stepInCourseOfWay from '../../utils/stepInCourseOfWay'
 import createPosition from '../../utils/createPosition'
 
-import { STEP, DELAY, INVERSE_DIRECTION, BUTTONS } from '../../constants/snake.js'
+import { STEP, INVERSE_DIRECTION } from '../../constants/snake.js'
 import './eat.scss'
 
 class Eat extends Component {
@@ -27,7 +28,8 @@ class Eat extends Component {
       this.props.makeSnakeBigger(
         stepInCourseOfWay(snakePointsReverse, INVERSE_DIRECTION.get(String(snakeBack.get('turn'))))
       );
-      this.props.generateEatPosition(createPosition(snake))
+      this.props.generateEatPosition(createPosition(snake));
+      this.props.setScore();
     }
   }
 
@@ -76,7 +78,8 @@ const
   }),
   mapDispatchToProps = dispatch => ({
     generateEatPosition: bindActionCreators(generateEatPosition, dispatch),
-    makeSnakeBigger: bindActionCreators(makeSnakeBigger, dispatch)
+    makeSnakeBigger: bindActionCreators(makeSnakeBigger, dispatch),
+    setScore: bindActionCreators(setScore, dispatch)
   });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Eat)

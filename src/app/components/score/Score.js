@@ -1,22 +1,27 @@
 import React, { PropTypes, Component } from 'react'
+import { connect } from 'react-redux'
+
 import './score.scss'
 
-export default class Score extends Component {
-
-  static defaultProps = {
-    score: 0
-  };
+class Score extends Component {
 
   render() {
     const { score } = this.props;
     return (
       <div className='score'>
-        <p>{score}</p>
+        <p>{score.get('count')}</p>
       </div>
     )
   }
 }
 
 Score.propTypes = {
-  score: PropTypes.number.isRequired,
+
 };
+
+const
+  mapStateToProps = ({ score }) =>  ({
+    score
+  });
+
+export default connect(mapStateToProps)(Score)
