@@ -5,8 +5,7 @@ import { connect } from 'react-redux'
 import { STEP, INVERSE_DIRECTION, BUTTONS, DELAY } from '../../constants/snake.js'
 import { changeSnakeDirection, makeSnakeBigger } from '../../actions/snakeActions.js'
 import { generateEatPosition } from '../../actions/eatActions'
-import stepInCourseOfWay from '../../utils/stepInCourseOfWay'
-import createPosition from '../../utils/createPosition'
+
 
 import './snake.scss'
 
@@ -22,10 +21,10 @@ class Snake extends Component {
     const
       { snake, eat } = this.props,
       eatPosition = eat.get('eatPosition'),
-      snakeBack = snake.get('points').first(),
       snakeHead = snake.get('points').last(),
 
       oldDirection = snakeHead.get('turn'),
+
       inverseValidation = BUTTONS.get(String(event.keyCode)) !==
                           INVERSE_DIRECTION.get(String(oldDirection)),
       keysValidation = BUTTONS.keySeq().includes(String(event.keyCode));
@@ -37,24 +36,8 @@ class Snake extends Component {
 
       if (snakeHead.get('validationPass')) {
         this.props.changeSnakeDirection(event.keyCode);
-        if (snakeHead.get('x') === eatPosition.get('x')
-          &&
-          snakeHead.get('y') === eatPosition.get('y')) {
-          this.props.makeSnakeBigger(
-            stepInCourseOfWay(snake.get('points'), INVERSE_DIRECTION.get(String(snakeBack.get('turn'))))
-          );
-          this.props.generateEatPosition(createPosition(snake))
-        }
-        this.interval = setInterval( () => {
 
-          if (snakeHead.get('x') === eatPosition.get('x')
-            &&
-            snakeHead.get('y') === eatPosition.get('y')) {
-            this.props.makeSnakeBigger(
-              stepInCourseOfWay(snake.get('points'), INVERSE_DIRECTION.get(String(snakeBack.get('turn'))))
-            );
-            this.props.generateEatPosition(createPosition(snake))
-          }
+        this.interval = setInterval( () => {
           this.props.changeSnakeDirection(event.keyCode);
         }, DELAY)
       }

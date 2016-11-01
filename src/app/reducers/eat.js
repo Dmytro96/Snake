@@ -1,6 +1,5 @@
 import Immutable from 'immutable'
 import { GENERATE_EAT_POSITION } from '../constants/eat.js'
-import createPosition from '../utils/createPosition.js';
 
 
 const initialState = Immutable.Map({

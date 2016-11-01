@@ -5,19 +5,41 @@ import { connect } from 'react-redux'
 
 import { generateEatPosition } from '../../actions/eatActions'
 import { makeSnakeBigger } from '../../actions/snakeActions'
-import createPosition from '../../utils/createPosition.js'
+import stepInCourseOfWay from '../../utils/stepInCourseOfWay'
+import createPosition from '../../utils/createPosition'
 
-import { STEP } from '../../constants/snake.js'
+import { STEP, DELAY, INVERSE_DIRECTION, BUTTONS } from '../../constants/snake.js'
 import './eat.scss'
 
 class Eat extends Component {
+
+  snakeOverEat() {
+    const
+      { snake, eat } = this.props,
+      eatPosition = eat.get('eatPosition'),
+      snakeBack = snake.get('points').first(),
+      snakeHead = snake.get('points').last(),
+      snakePointsReverse = snake.get('points').reverse();
+
+    if (snakeHead.get('x') === eatPosition.get('x')
+      &&
+      snakeHead.get('y') === eatPosition.get('y')) {
+      this.props.makeSnakeBigger(
+        stepInCourseOfWay(snakePointsReverse, INVERSE_DIRECTION.get(String(snakeBack.get('turn'))))
+      );
+      this.props.generateEatPosition(createPosition(snake))
+    }
+  }
+
 
   componentDidMount() {
     const
       { snake } = this.props,
       eatPosition = createPosition(snake);
 
-    this.props.generateEatPosition(eatPosition)
+    this.props.generateEatPosition(eatPosition);
+
+    setInterval(this.snakeOverEat.bind(this), 10);
   }
 
   static defaultProps = {
