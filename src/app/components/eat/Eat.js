@@ -22,10 +22,7 @@ class Eat extends Component {
       // snakeHead = snake.get('points').last(),
       // eatPosition = eat.get('eatPosition');
 
-    const { snake, eat } = this.props;
-
-
-    if  (eat.get('eatPosition').size === 0)  {
+    const { snake } = this.props;
 
       let eatPosition = createPosition();
 
@@ -39,8 +36,8 @@ class Eat extends Component {
       while (validationSelf(eatPosition, snake.get('points'))){
         eatPosition = createPosition();
       }
-      generateEatPosition(eatPosition);
-    }
+      this.props.generateEatPosition(eatPosition)
+
 
 
 
