@@ -1,6 +1,8 @@
 import React, { PropTypes, Component } from 'react'
-import Score from '../components/score/Score.js'
+
+import Score  from '../components/score/Score.js'
 import Area from '../components/area/Area.js'
+
 
 export class App extends Component {
   render() {
@@ -8,9 +10,8 @@ export class App extends Component {
       <div>
         <Score />
         <Area>
-          {/* Snake here */}
+          {/* Snake and Eat here */}
         </Area>
-
       </div>
     )
   }

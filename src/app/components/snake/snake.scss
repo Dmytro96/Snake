@@ -1,8 +1,13 @@
 .snake {
-  fill: rgb(42, 65, 65);
-  stroke: rgb(42, 65, 65);
-  &:first-child {
-    fill: rgb(3, 164, 255);
-    stroke: transparent;
+  fill: #4246FF;
+  stroke: #5362FF;
+   //transition: all .2s linear;
+
+  //background-image: url();
+  //background-size: 25px 25px;
+  &:last-child {
+    fill: #9850FF;
+    stroke: #9850FF;
+
   }
 }
