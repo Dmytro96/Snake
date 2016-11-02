@@ -16,7 +16,7 @@ export
     COLUMNS = 20,
     STEP = AREA_SIZE / COLUMNS,
 
-    DELAY = 300,
+    DELAY = 100,
 
     // snake length computing [3 - 10]
     SNAKE_LENGTH = getRandomIntBetweenMinMax(MIN_SNAKE_LENGTH, MAX_SNAKE_LENGTH),
