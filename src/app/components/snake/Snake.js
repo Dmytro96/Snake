@@ -3,8 +3,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { STEP, INVERSE_DIRECTION, BUTTONS, DELAY } from '../../constants/snake.js'
-import { changeSnakeDirection, makeSnakeBigger } from '../../actions/snakeActions.js'
-import { generateEatPosition } from '../../actions/eatActions'
+import { snakeDirectionUp, snakeDirectionDown, snakeDirectionRight, snakeDirectionLeft,
+          makeSnakeBigger } from '../../actions/snakeActions'
 
 
 import './snake.scss'
@@ -28,16 +28,16 @@ class Snake extends Component {
                           INVERSE_DIRECTION.get(String(oldDirection)),
       keysValidation = BUTTONS.keySeq().includes(String(event.keyCode));
 
-
     if (inverseValidation && keysValidation) {
 
       clearInterval(this.interval);
 
       if (snakeHead.get('validationPass')) {
-        this.props.changeSnakeDirection(event.keyCode);
+
+        this.props.snakeDirectionActions[BUTTONS.get(String(event.keyCode))]();
 
         this.interval = setInterval( () => {
-          this.props.changeSnakeDirection(event.keyCode);
+          this.props.snakeDirectionActions[BUTTONS.get(String(event.keyCode))]();
         }, DELAY)
       }
     }
@@ -85,9 +85,13 @@ const
     eat
   }),
   mapDispatchToProps = dispatch => ({
-    changeSnakeDirection: bindActionCreators(changeSnakeDirection, dispatch),
-    makeSnakeBigger: bindActionCreators(makeSnakeBigger, dispatch),
-    generateEatPosition: bindActionCreators(generateEatPosition, dispatch)
+    snakeDirectionActions: {
+      UP: bindActionCreators(snakeDirectionUp, dispatch),
+      RIGHT: bindActionCreators(snakeDirectionRight, dispatch),
+      DOWN: bindActionCreators(snakeDirectionDown, dispatch),
+      LEFT: bindActionCreators(snakeDirectionLeft, dispatch)
+    },
+    makeSnakeBigger: bindActionCreators(makeSnakeBigger, dispatch)
   });
 
 
