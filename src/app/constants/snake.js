@@ -51,13 +51,6 @@ export
       40: DOWN
     }),
 
-    DIRECTION_TO_WAY = Immutable.Map({
-      SNAKE_DIRECTION_UP: UP,
-      SNAKE_DIRECTION_RIGHT: RIGHT,
-      SNAKE_DIRECTION_DOWN: DOWN,
-      SNAKE_DIRECTION_LEFT: LEFT
-    }),
-
     INVERSE_DIRECTION = Immutable.Map({
       LEFT: RIGHT,
       RIGHT: LEFT,

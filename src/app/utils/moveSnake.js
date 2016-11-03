@@ -1,9 +1,7 @@
 import stepInCourseOfWay from './stepInCourseOfWay.js'
-import { DIRECTION_TO_WAY } from '../constants/snake'
 
 export const moveSnakeStep = (way, state) => {
-  const newWay = DIRECTION_TO_WAY.get(String(way));
-  const nextStep = stepInCourseOfWay(state.get('points'), newWay);
+  const nextStep = stepInCourseOfWay(state.get('points'), way);
 
   if (nextStep.get('validationPass')) {
     // state = state.setIn(['points', 'turn'], way)
