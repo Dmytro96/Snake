@@ -6,12 +6,16 @@ export class TestComp extends Component {
   //
   // }
 
+  static defaultProps = {
+    time: 10
+  };
 
   render() {
-
+    const { time } = this.props;
     return (
-      <div className='myTestDiv'>
-        Arr
+      <div
+        className='myTestDiv'>
+        Add {time} smth
       </div>
     )
   }
