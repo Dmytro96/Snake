@@ -10,7 +10,11 @@ import { snakeDirectionUp, snakeDirectionDown, snakeDirectionRight, snakeDirecti
 import './snake.scss'
 
 
-class Snake extends Component {
+export class Snake extends Component {
+  constructor(props) {
+    super(props);
+    this.snakeMove = this.snakeMove.bind(this)
+  }
 
   static defaultProps = {
     width: STEP,
@@ -45,11 +49,11 @@ class Snake extends Component {
 
 
   componentDidMount() {
-    document.addEventListener('keydown', this.snakeMove.bind(this))
+    document.addEventListener('keydown', this.snakeMove)
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.snakeMove.bind(this))
+    document.removeEventListener('keydown', this.snakeMove)
   }
 
   render() {

@@ -41,3 +41,4 @@ module.exports = {
     'react/lib/ReactContext': true
   }
 };
+
