@@ -1,13 +1,16 @@
 import React from 'react'
-import { mount, shallow } from 'enzyme'
+import { render, mount, shallow } from 'enzyme'
 import { expect } from 'chai'
 
 import Immutable from 'immutable'
 import { TestComp }  from './TestComp'
+import Score from '../score/Score'
+import configureStore from '../../store/configureStore'
 
 
 describe('Test Component', () => {
   const test = shallow(<TestComp/>);
+  {/*const snake = shallow(<Snake/>);*/}
 
   it('should be div', () => {
     expect(test.type()).to.equal('div');
@@ -17,14 +20,13 @@ describe('Test Component', () => {
     expect(test.hasClass('myTestDiv')).to.equal(true);
   });
 
-  it('should output text Arr {time} smth', () => {
+  it('should output text \'Arr {time} smth\'', () => {
     const text = test.childAt(0);
-    console.log(text.text());
     expect(text.text()).to.equal('Add ')
   });
 
   it('should show props', () => {
-    console.log(test.props());
+    // console.log(test.props());
   });
 
   it('state with manually input data', () => {
@@ -33,7 +35,7 @@ describe('Test Component', () => {
         state = state.set('counter', state.get('counter') - action.payload);
         return state;
       },
-      state = Immutable.Map({counter: 10}),
+      state = Immutable.Map({ counter: 10 }),
       action = { payload: 1 },
       expectedState = Immutable.Map({ counter: 9 }),
       newState = fn(state, action);
@@ -41,6 +43,16 @@ describe('Test Component', () => {
     expect(Immutable.is(expectedState, newState)).to.equal(true);
   });
 
+
+  it('Score render', () => {
+    //do not work
+
+    const state = configureStore();
+
+    const score = state.getState().score;
+    const scoreCmp = mount(<Score/>, score);
+
+  });
 
 });
 

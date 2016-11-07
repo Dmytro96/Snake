@@ -8,7 +8,8 @@ import { MAKE_SNAKE_BIGGER } from '../constants/eat.js'
 import generateRandomSnake from '../utils/generateRandomSnake.js'
 import { moveSnakeStep } from '../utils/moveSnake.js'
 
-const initialState = Immutable.Map({
+
+export const initialState = Immutable.Map({
   points: generateRandomSnake()
 });
 
