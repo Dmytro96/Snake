@@ -3,12 +3,8 @@ import stepInCourseOfWay from './stepInCourseOfWay.js'
 import { randomOfList, generateRandomPointOnMap } from './randomize.js'
 import Immutable from 'immutable'
 
-
 const generateRandomSnake = () => {
   let pointsOfSnake = Immutable.List();
-
-  console.log(SNAKE_LENGTH + ' - length');
-
   pointsOfSnake = pointsOfSnake.push(Immutable.Map({
     x: generateRandomPointOnMap(),
     y: generateRandomPointOnMap()
