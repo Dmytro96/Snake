@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import './score.scss'
 
-class Score extends Component {
+export class Score extends Component {
 
   render() {
     const { score } = this.props;
