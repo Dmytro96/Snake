@@ -60,4 +60,3 @@ export
 
     WAYS = Immutable.List([LEFT, FORWARD, RIGHT]),
     DIRECTIONS = Immutable.List([UP, RIGHT, DOWN, LEFT]);
-
