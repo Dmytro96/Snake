@@ -15,14 +15,14 @@ import snakeReducer from './snake'
 
 describe('Snake reducer \n', () => {
 
-  it('check initial state', () => {
-    // do not work
-
-    const checkState = snakeReducer();
-    console.log(checkState);
-
-    // expect(Immutable.is(initialState, initialState)).to.equal(true);
-  });
+  // it('check initial state', () => {
+  //   // do not work
+  //
+  //   const checkState = snakeReducer();
+  //   console.log(checkState);
+  //
+  //   // expect(Immutable.is(initialState, initialState)).to.equal(true);
+  // });
 
   it('make a step to the right', () => {
     const moved = moveSnakeStep(RIGHT, initialState);

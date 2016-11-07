@@ -1,12 +1,9 @@
 import React from 'react'
-import { render, mount, shallow } from 'enzyme'
+import { shallow } from 'enzyme'
 import { expect } from 'chai'
 
 import Immutable from 'immutable'
 import { TestComp }  from './TestComp'
-import Score from '../score/Score'
-import configureStore from '../../store/configureStore'
-
 
 describe('Test Component', () => {
   const test = shallow(<TestComp/>);
@@ -42,18 +39,6 @@ describe('Test Component', () => {
 
     expect(Immutable.is(expectedState, newState)).to.equal(true);
   });
-
-
-  it('Score render', () => {
-    //do not work
-
-    const state = configureStore();
-
-    const score = state.getState().score;
-    const scoreCmp = mount(<Score/>, score);
-
-  });
-
 });
 
 
