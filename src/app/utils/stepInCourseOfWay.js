@@ -21,7 +21,6 @@ const randomFourSides = randomOfList(DIRECTIONS),
   });
 
   nextPoint = nextPoint.set('validationPass', validationOfSnakeGeneration(nextPoint, pointsOfSnake));
-
   nextPoint = nextPoint.set('turn', nextPoint.get('validationPass') ? direction.get('turn') : way);
 
   return nextPoint
