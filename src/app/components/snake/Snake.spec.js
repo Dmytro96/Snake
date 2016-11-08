@@ -10,15 +10,16 @@ import { initialState } from '../../reducers/snake'
 
 describe('Snake', () => {
 
-  const store = configureStore();
-  const context = { store };
-  const snake = mount(<Snake />, {context, childContextTypes: { store: PropTypes.object}});
+  const
+    store = configureStore(),
+    context = { store },
+    snake = mount(<Snake />, {context, childContextTypes: { store: PropTypes.object}});
 
   it('should render correctly', () => {
-    const naturalSnakeSize = snake.find('rect').length;
-    const expectedSnakeSize = initialState.get('points').size;
-
-    expect(naturalSnakeSize).to.equal(expectedSnakeSize);
+    const
+      amountOfRectElements = snake.find('rect'),
+      expectedSnakeSize = initialState.get('points').size;
+    expect(amountOfRectElements).to.have.lengthOf(expectedSnakeSize);
   });
 
 });
