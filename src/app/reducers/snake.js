@@ -10,7 +10,8 @@ import { moveSnakeStep } from '../utils/moveSnake.js'
 
 
 export const initialState = Immutable.Map({
-  points: generateRandomSnake()
+  points: generateRandomSnake(),
+  snakeAlive: true
 });
 
 export default handleActions({
@@ -24,4 +25,4 @@ export default handleActions({
     moveSnakeStep(UP, state),
   [MAKE_SNAKE_BIGGER]: (state, action) =>
     state.update('points', points => points.unshift(action.payload))
-}, initialState );
+}, initialState);

@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 
-import Score  from '../components/score/Score.js'
-import Area from '../components/area/Area.js'
+import Score  from '../components/score/Score'
+import Area from '../components/area/Area'
 
 
 export class App extends Component {

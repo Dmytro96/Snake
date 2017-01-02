@@ -6,15 +6,10 @@ import { STEP, INVERSE_DIRECTION, BUTTONS, DELAY } from '../../constants/snake.j
 import { snakeDirectionUp, snakeDirectionDown, snakeDirectionRight, snakeDirectionLeft,
           makeSnakeBigger } from '../../actions/snakeActions'
 
-
 import './snake.scss'
 
 
 export class Snake extends Component {
-  constructor(props) {
-    super(props);
-    this.snakeMove = this.snakeMove.bind(this)
-  }
 
   static defaultProps = {
     width: STEP,
@@ -49,11 +44,11 @@ export class Snake extends Component {
 
 
   componentDidMount() {
-    document.addEventListener('keydown', this.snakeMove)
+    document.addEventListener('keydown', this.snakeMove.bind(this))
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.snakeMove)
+    document.removeEventListener('keydown', this.snakeMove.bind(this))
   }
 
   render() {
@@ -84,7 +79,7 @@ Snake.propTypes = {
 };
 
 const
-  mapStateToProps = ({ snake, eat }) =>  ({
+  mapStateToProps = ({snake, eat}) =>  ({
     snake,
     eat
   }),
