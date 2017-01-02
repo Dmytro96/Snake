@@ -59,4 +59,6 @@ export
     }),
 
     WAYS = Immutable.List([LEFT, FORWARD, RIGHT]),
-    DIRECTIONS = Immutable.List([UP, RIGHT, DOWN, LEFT]);
+    DIRECTIONS = Immutable.List([UP, RIGHT, DOWN, LEFT]),
+
+    SNAKE_IS_DEAD = 'SNAKE_IS_DEAD';

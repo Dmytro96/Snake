@@ -9,4 +9,4 @@ const initialState = Immutable.Map({
 export default handleActions({
   [SET_SCORE]: (state, action) =>
     state.set('count', state.get('count') + 1)
-}, initialState );
+}, initialState);

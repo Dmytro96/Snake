@@ -1,13 +1,9 @@
 .snake {
   fill: #4246FF;
   stroke: #5362FF;
-   //transition: all .2s linear;
 
-  //background-image: url();
-  //background-size: 25px 25px;
   &:last-child {
     fill: #9850FF;
     stroke: #9850FF;
-
   }
 }
